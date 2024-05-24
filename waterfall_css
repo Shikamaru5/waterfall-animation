@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbar */
+}
+
+#home-waterfall {
+    position: relative;
+    width: 100vw;
+    height: 90vh;
+    overflow: hidden;
+		background-color: rgba(0, 0, 0, 0.9); /* Black color with 80% opacity */
+}
+
+#home-waterfall .waterfall-image {
+    position: absolute;
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    opacity: 0;
+    animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        top: -20%; /* Start slightly above the visible area */
+        opacity: 1;
+    }
+    90% {
+        top: 80%; /* End before reaching the bottom of the visible area */
+        opacity: 1;
+    }
+    100% {
+        top: 100%; /* Ensure the image is fully out of view */
+        opacity: 0;
+    }
+}
