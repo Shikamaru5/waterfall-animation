@@ -16,18 +16,28 @@ function custom_waterfall_script() {
             const randomLeft = Math.random() * (maxLeft - minLeft) + minLeft;
             image.style.left = `${randomLeft}px`;
 
-
             // Generate random vertical position within visible area
             const minTop = 0; // Minimum top position (top edge of container)
             const maxTop = container.clientHeight - image.clientHeight; // Maximum top position (bottom edge of container minus image height)
             const randomTop = Math.random() * (maxTop - minTop) + minTop;
             image.style.top = `${randomTop}px`;
 
+            // Generate random size within the range 50-150
+            const minSize = 50;
+            const maxSize = 150;
+            const randomSize = Math.random() * (maxSize - minSize) + minSize;
+            image.style.width = `${randomSize}px`;
+            image.style.height = 'auto'; // Maintain aspect ratio
+
             // Calculate animation delay for each image
             const animationDelay = index * 0.5; // Adjust the multiplier for desired delay between images
             image.style.animationDelay = `${animationDelay}s`;
 
-            image.style.animationDuration = '4s'; // Set animation duration to 4 seconds
+            // Generate random animation duration within the range 3-6 seconds
+            const minAnimationDuration = 3000; // 3 seconds in milliseconds
+            const maxAnimationDuration = 6000; // 6 seconds in milliseconds
+            const randomAnimationDuration = Math.floor(Math.random() * (maxAnimationDuration - minAnimationDuration + 1)) + minAnimationDuration;
+            image.style.animationDuration = `${randomAnimationDuration / 1000}s`; // Convert milliseconds to seconds
 
             // Reset position after animation ends
             image.addEventListener('animationiteration', () => {
@@ -38,6 +48,10 @@ function custom_waterfall_script() {
                 // Generate new random vertical position within visible area
                 const newRandomTop = Math.random() * (maxTop - minTop) + minTop;
                 image.style.top = `${newRandomTop}px`;
+
+                // Generate new random size within the range 50-150
+                const newRandomSize = Math.random() * (maxSize - minSize) + minSize;
+                image.style.width = `${newRandomSize}px`;
             });
         });
     });
