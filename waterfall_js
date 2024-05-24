@@ -1,0 +1,47 @@
+function custom_waterfall_script() {
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Script loaded');
+        const container = document.getElementById('home-waterfall');
+        const images = container.querySelectorAll('.waterfall-image');
+        
+        images.forEach((image, index) => {
+            console.log('Setting initial position for', image.src);
+            const containerRect = container.getBoundingClientRect();
+            
+            // Generate random horizontal position within visible area
+            const minLeft = container.clientWidth - image.clientWidth; // Minimum left position (right edge of container minus image width)
+            const maxLeft = 0; // Maximum left position (left edge of container)
+            const randomLeft = Math.random() * (maxLeft - minLeft) + minLeft;
+            image.style.left = `${randomLeft}px`;
+
+
+            // Generate random vertical position within visible area
+            const minTop = 0; // Minimum top position (top edge of container)
+            const maxTop = container.clientHeight - image.clientHeight; // Maximum top position (bottom edge of container minus image height)
+            const randomTop = Math.random() * (maxTop - minTop) + minTop;
+            image.style.top = `${randomTop}px`;
+
+            // Calculate animation delay for each image
+            const animationDelay = index * 0.5; // Adjust the multiplier for desired delay between images
+            image.style.animationDelay = `${animationDelay}s`;
+
+            image.style.animationDuration = '4s'; // Set animation duration to 4 seconds
+
+            // Reset position after animation ends
+            image.addEventListener('animationiteration', () => {
+                console.log('Animation iteration for', image.src);
+                // Generate new random horizontal position within visible area
+                const newRandomLeft = Math.random() * (maxLeft - minLeft) + minLeft;
+                image.style.left = `${newRandomLeft}px`;
+                // Generate new random vertical position within visible area
+                const newRandomTop = Math.random() * (maxTop - minTop) + minTop;
+                image.style.top = `${newRandomTop}px`;
+            });
+        });
+    });
+    </script>
+    <?php
+}
+add_action('wp_footer', 'custom_waterfall_script');
