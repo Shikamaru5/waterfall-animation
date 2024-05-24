@@ -1,2 +1,3 @@
 # waterfall-animation
-This is a set of three scripts that you can add to a website to make it have a waterfall effect of different images.
+This is a set of three scripts that you can add to a website to make it have a waterfall effect of different images. In a website builder like wordpress you can add an html element to your page and or themed page and add the html code to it. If you have a way to directly add css code to the page you can add the css script code. Then if there isn't anything directly related to adding js scripts you can go into the files of the theme and in functions.php you can add the js function to the end of that script.
+You can change the images to be whatever you want in the html and add more than just three.
